@@ -14,7 +14,11 @@ const text =  'eJwdWIVTlHsUBR5IiZSkTUqI8FQU6UaRUkEaFJQUAUEJke7u7o6lWRpm7vnH3tk3z
 // }}}
 const result = Pako.inflate(new Uint8Array(stringToArrayBuffer(text)), { to: 'string' });
 
-const inflateText = document.createTextNode(text);
-const resultText = document.createTextNode(typeof result === 'string' ? result : typeof result);
-document.querySelector('#InflateTextContent').appendChild(inflateText);
-document.querySelector('#ResultContent').appendChild(resultText);
+if (typeof document !== 'undefined') {
+	const inflateText = document.createTextNode(text);
+	const resultText = document.createTextNode(typeof result === 'string' ? result : typeof result);
+	document.querySelector('#InflateTextContent').appendChild(inflateText);
+	document.querySelector('#ResultContent').appendChild(resultText);
+} else {
+	console.log('result', result);
+}
